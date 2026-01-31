@@ -1,16 +1,16 @@
-MediCap — Offline AI Medicine Assistant and Expiry Management System
+**MediCap — Offline AI Medicine Assistant and Expiry Management System**
 
 MediCap is an offline-first Android application designed to help users safely manage medicines by combining on-device artificial intelligence with practical healthcare workflows. The application enables medicine scanning, expiry tracking, intelligent search, and AI-based assistance without relying on cloud APIs.
 
 The primary goal of MediCap is to reduce risks associated with expired medicines, unsafe self-medication, and lack of reliable medicine information, especially in low-connectivity or emergency scenarios.
 
-Problem Statement
+_Problem Statement_
 
 Millions of people store medicines at home without tracking expiry dates or fully understanding their usage and safety guidelines. Existing solutions are either cloud-dependent, privacy-invasive, or limited to basic reminders.
 
 MediCap addresses this gap by providing a fully on-device, privacy-preserving system that works even in offline or low-internet environments.
 
-Solution Overview
+_Solution Overview_
 
 MediCap acts as a personal medicine companion that allows users to scan medicines, store expiry details locally, search medicines manually, and interact with an AI assistant for basic informational guidance. All intelligence runs locally on the device using the RunAnywhere SDK.
 
