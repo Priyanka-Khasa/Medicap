@@ -1,131 +1,162 @@
-# RunAnywhere SDK - Simple Chat App
+MediCap — Offline AI Medicine Assistant and Expiry Management System
 
-A simple Android chat application demonstrating the RunAnywhere SDK for on-device AI inference.
+MediCap is an offline-first Android application designed to help users safely manage medicines by combining on-device artificial intelligence with practical healthcare workflows. The application enables medicine scanning, expiry tracking, intelligent search, and AI-based assistance without relying on cloud APIs.
 
-## What This App Does
+The primary goal of MediCap is to reduce risks associated with expired medicines, unsafe self-medication, and lack of reliable medicine information, especially in low-connectivity or emergency scenarios.
 
-This is a minimal example showing how to:
+Problem Statement
 
-1. Initialize the RunAnywhere SDK
-2. Download AI models (LLMs)
-3. Load models into memory
-4. Run text generation with streaming responses
+Millions of people store medicines at home without tracking expiry dates or fully understanding their usage and safety guidelines. Existing solutions are either cloud-dependent, privacy-invasive, or limited to basic reminders.
 
-## Features
+MediCap addresses this gap by providing a fully on-device, privacy-preserving system that works even in offline or low-internet environments.
 
-- **Model Management**: Download and load AI models directly in the app
-- **Real-time Streaming**: See AI responses generate word-by-word
-- **Simple UI**: Clean Jetpack Compose interface
-- **On-Device AI**: All inference runs locally on your Android device
+Solution Overview
 
-## Quick Start
+MediCap acts as a personal medicine companion that allows users to scan medicines, store expiry details locally, search medicines manually, and interact with an AI assistant for basic informational guidance. All intelligence runs locally on the device using the RunAnywhere SDK.
 
-### 1. Build and Run
+Key Features
+Medicine Scanning
 
-```bash
+Camera-based scanning of medicine strips or boxes
+
+Automatic extraction of medicine name and expiry date
+
+Direct storage of scanned data into a local expiry database
+
+Expiry Vault
+
+Local Room database for persistent storage
+
+Tracks medicine name, expiry date, and user notes
+
+Visual status indicators for safe, expiring, and expired medicines
+
+Designed to prevent accidental consumption of expired drugs
+
+AI Medicine Assistant
+
+Chat-based interface for medicine-related queries
+
+Provides basic information such as usage, precautions, and safety notes
+
+Runs entirely on device using local large language models
+
+No cloud calls, ensuring privacy and reliability
+
+Note: The assistant is informational and does not replace professional medical advice.
+
+Smart Medicine Search
+
+Manual search by medicine name
+
+Useful when scanning is not possible or packaging is unavailable
+
+Emergency Delivery Flow (Prototype)
+
+Conceptual medicine delivery interface for emergency use cases
+
+Demonstrates real-world applicability and system design thinking
+
+Focused on UX and user flow rather than logistics implementation
+
+PDF Export
+
+Export stored medicine data into a shareable PDF
+
+Useful for doctor consultations, family sharing, or record keeping
+
+Demonstration
+
+A complete working demo of the application is available at the following link:
+
+https://drive.google.com/file/d/1lXa6bxx6TOJBdSECkhHcjLpaFm0du04Z/view
+
+Technology Stack
+Android
+
+Kotlin
+
+Jetpack Compose
+
+Room Database
+
+CameraX
+
+AI and On-Device Inference
+
+RunAnywhere SDK
+
+Llama.cpp inference module
+
+On-device large language models
+
+Streaming text generation
+
+System Architecture
+
+The application follows a clean, modular architecture:
+
+Application Initialization
+        |
+        v
+ViewModels (State and Business Logic)
+        |
+        v
+Jetpack Compose UI Layer
+        |
+        v
+Room Database (Expiry Vault)
+
+Build and Run Instructions
+Requirements
+
+Android 7.0 (API 24) or higher
+
+Minimum 200 MB free storage for AI models
+
+Internet connection required only for initial model download
+
+Build Steps
 ./gradlew assembleDebug
-# Or open in Android Studio and click Run
-```
 
-### 2. Download a Model
 
-1. Launch the app
-2. Tap "Models" in the top bar
-3. Choose a model (we recommend starting with "SmolLM2 360M Q8_0" - only 119 MB)
-4. Tap "Download" and wait for it to complete
+Alternatively, open the project in Android Studio and run it on a physical Android device.
 
-### 3. Load the Model
+Supported AI Models
+Model Name	Size	Use Case
+SmolLM2 360M	~119 MB	Fast, lightweight inference
+Qwen 2.5 0.5B Instruct	~374 MB	Improved reasoning and responses
+Limitations and Notes
 
-1. Once downloaded, tap "Load" on the model
-2. Wait for "Model loaded! Ready to chat." message
+On-device inference is slower compared to cloud-based systems
 
-### 4. Start Chatting!
+Performance depends on device CPU and available memory
 
-1. Type a message in the text field
-2. Tap "Send"
-3. Watch the AI response generate in real-time
+The application prioritizes privacy and offline usability over speed
 
-## Available Models
+Future Enhancements
 
-The app comes pre-configured with two models:
+Expiry reminder notifications
 
-| Model | Size | Quality | Best For |
-|-------|------|---------|----------|
-| SmolLM2 360M Q8_0 | 119 MB | Basic | Testing, quick responses |
-| Qwen 2.5 0.5B Instruct Q6_K | 374 MB | Better | General conversations |
+Multi-language support
 
-## Technical Details
+Barcode scanning integration
 
-### SDK Components Used
+Voice-based medicine interaction
 
-- **RunAnywhere Core SDK**: Component architecture and model management
-- **LlamaCpp Module**: Optimized llama.cpp inference engine with 7 ARM64 variants
-- **Kotlin Coroutines**: For async operations and streaming
+Family and multi-profile support
 
-### Architecture
+Pharmacy system integration
 
-```
-MyApplication (initialization)
-    ↓
-ChatViewModel (state management)
-    ↓
-ChatScreen (UI layer)
-```
+Resources
 
-### Key Files
+RunAnywhere SDK Repository: https://github.com/RunanywhereAI/runanywhere-sdks
 
-- `MyApplication.kt` - SDK initialization and model registration
-- `ChatViewModel.kt` - Business logic and state management
-- `MainActivity.kt` - UI components and composables
+RunAnywhere Documentation: https://github.com/RunanywhereAI/runanywhere-sdks/blob/main/CLAUDE.md
 
-## Requirements
+Author
 
-- Android 7.0 (API 24) or higher
-- ~200 MB free storage (for smallest model)
-- Internet connection (for downloading models)
+Priyanka Khasa
+B.Tech Electronics and Communication Engineering
 
-## Troubleshooting
-
-### Models not showing up
-
-- Wait a few seconds for SDK initialization
-- Tap "Refresh" in the Models section
-- Check logcat for initialization errors
-
-### Download fails
-
-- Check internet connection
-- Ensure sufficient storage space
-- Verify INTERNET permission in AndroidManifest.xml
-
-### App crashes during generation
-
-- Try the smaller model (SmolLM2 360M)
-- Close other apps to free memory
-- Check that `largeHeap="true"` is set in AndroidManifest.xml
-
-### Generation is slow
-
-- This is normal for on-device inference
-- Smaller models run faster
-- Performance depends on device CPU
-
-## Next Steps
-
-Want to customize this app? Try:
-
-1. **Add more models** - Edit `MyApplication.kt` → `registerModels()`
-2. **Customize UI** - Edit `MainActivity.kt` compose functions
-3. **Add system prompts** - Modify message format in `ChatViewModel.kt`
-4. **Persist chat history** - Add Room database or DataStore
-5. **Add model parameters** - Explore temperature, top-k, top-p settings
-
-## Resources
-
-- [Full Quick Start Guide](app/src/main/java/com/runanywhere/startup_hackathon20/QUICK_START_ANDROID.md)
-- [RunAnywhere SDK Repository](https://github.com/RunanywhereAI/runanywhere-sdks)
-- [SDK Documentation](https://github.com/RunanywhereAI/runanywhere-sdks/blob/main/CLAUDE.md)
-
-## License
-
-This example app follows the license of the RunAnywhere SDK.
+App follows the license of the RunAnywhere SDK.
